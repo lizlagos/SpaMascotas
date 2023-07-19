@@ -1,0 +1,156 @@
+CREATE DATABASE IF NOT EXISTS spamascotas;
+
+USE spamascotas;
+
+CREATE TABLE IF NOT EXISTS clientes (
+  id_cliente INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_cliente VARCHAR(30) NOT NULL,
+  apellido_cliente VARCHAR(30) NOT NULL,
+  documento_cliente INT NOT NULL,
+  telefono_cliente INT NOT NULL,
+  direccion_cliente VARCHAR(120)
+);
+
+CREATE TABLE IF NOT EXISTS mascotas (
+	id_mascota INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_mascota VARCHAR(30) NOT NULL,
+  especie_mascota VARCHAR(30) NOT NULL,
+  raza_mascota VARCHAR(30) NOT NULL,
+  genero_mascota VARCHAR(20) NOT NULL,
+  edad_mascota INT NOT NULL,
+  cumpleanos_mascota DATETIME
+);
+
+CREATE TABLE IF NOT EXISTS vacunas (
+	codigo_vacuna INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_vacuna VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS servicios (
+	codigo_servicio INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  tipo_servicio VARCHAR(30) NOT NULL,
+  duracion_servicio TIME NOT NULL,
+  costo_servicio DECIMAL(10,3) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS productos (
+	codigo_producto INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  tipo_producto VARCHAR(30) NOT NULL,
+  cantidad_disponible_producto INT NOT NULL,
+  costo_producto DECIMAL(10,3) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS locales (
+	codigo_local INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_local VARCHAR(30) NOT NULL,
+  direccion_local VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS groomers (
+	id_groomer INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_groomer VARCHAR(30) NOT NULL,
+  apellido_groomer VARCHAR(30) NOT NULL,
+  documento_groomer INT NOT NULL,
+  telefono_groomer INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS administrativos (
+	id_administrativo INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  nombre_administrativo VARCHAR(30) NOT NULL,
+  apellido_administrativo VARCHAR(30) NOT NULL,
+  documento_administrativo INT NOT NULL,
+  telefono_administrativo INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS RClientesMascotas (
+	id_clientemascota INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  id_cliente INT NOT NULL,
+  id_mascota INT NOT NULL,
+  FOREIGN KEY (id_cliente)
+	    REFERENCES clientes(id_cliente)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (id_mascota)
+		  REFERENCES mascotas(id_mascota)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS RMascotasVacunas (
+	id_mascotavacuna INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  id_mascota INT NOT NULL,
+  codigo_vacuna INT NOT NULL,
+  fecha_aplicacion_vacuna DATE NOT NULL,
+  FOREIGN KEY (id_mascota)
+		  REFERENCES mascotas(id_mascota)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (codigo_vacuna)
+		  REFERENCES vacunas(codigo_vacuna)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS citas (
+	numero_cita INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  codigo_servicio INT NOT NULL,
+  id_cliente INT NOT NULL,
+  id_mascota INT NOT NULL,
+  id_groomer INT NOT NULL,
+  fechayhora_cita DATETIME NOT NULL,
+  FOREIGN KEY (codigo_servicio)
+		  REFERENCES servicios(codigo_servicio)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (id_cliente)
+		  REFERENCES clientes(id_cliente)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (id_mascota)
+		  REFERENCES mascotas(id_mascota)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (id_groomer)
+		  REFERENCES groomers(id_groomer)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Proveedores(
+	id_proveedor INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+	nombre_proveedor VARCHAR(30) NOT NULL,
+	ruc_proveedor VARCHAR(30) NOT NULL,
+	codigo_producto INT NOT NULL,
+	FOREIGN KEY (codigo_producto)
+		  REFERENCES productos(codigo_producto)
+		  ON DELETE CASCADE
+		  ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS RGroomersLocales(
+	id_groomerlocal INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  id_groomer INT NOT NULL,
+  codigo_local INT NOT NULL,
+  FOREIGN KEY (id_groomer)
+		  REFERENCES groomers(id_groomer)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+	FOREIGN KEY (codigo_local)
+	  	REFERENCES locales(codigo_local)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS RAdministrativosLocales(
+	id_administrativolocal INT NOT NULL UNIQUE AUTO_INCREMENT PRIMARY KEY,
+  id_administrativo INT NOT NULL,
+  codigo_local INT NOT NULL,
+  FOREIGN KEY (id_administrativo)
+      REFERENCES administrativos(id_administrativo)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE,
+  FOREIGN KEY (codigo_local)
+	  	REFERENCES locales(codigo_local)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);
