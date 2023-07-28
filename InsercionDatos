@@ -1,0 +1,154 @@
+use spamascotas;
+
+INSERT INTO clientes (id_cliente, nombre_cliente, apellido_cliente, documento_cliente, telefono_cliente, direccion_cliente)
+VALUES
+(1, "Mateo", "Garcia", 12345678, 3014567, "Calle 100 No 15 - 03"),
+(2, "Valentina", "Rodriguez", 19876543, 3025678, "Carrera 7 No 76 - 30"),
+(3, "Santiago", "Gomez", 17654321, 3056789, "Calle 70 No 15 - 30"),
+(4, "Isabella", "Hernandez", 14567892, 3107890, "Carrera 55 No 134 - 10"),
+(5, "Juan", "Fernandez", 10987654, 3118901, "Carrera 9 No 85 - 13"),
+(6, "Camila", "Lopez", 18765432, 3021234, "Calle 127 No 53 - 50"),
+(7, "Diego", "Ramirez", 19827364, 3052378, "Carrera 10 No 106 - 76"),
+(8, "Sofia", "Gonzalez", 13456789, 3103459, "Calle 153 No 45 - 05"),
+(9, "Andres", "Perez", 18765439, 3114560, "Calle 167 No 65 - 17"),
+(10, "Gabriela", "Silva", 19827365, 3019843, "Calle 170 No 60 - 26");
+
+INSERT INTO mascotas (id_mascota, nombre_mascota, especie_mascota, raza_mascota, genero_mascota, edad_mascota, cumpleanos_mascota)
+VALUES
+(1, "Luna", "Perro", "Labrador Retriever", "Femenino", 6, "2017-01-23"),
+(2, "Max", "Gato", "Persa", "Masculino", 9, "2014-01-29"),
+(3, "Bella", "Perro", "Beagle", "Femenino", 4, "2019-11-15"),
+(4, "Rocky", "Gato", "Siames", "Masculino", 11, "2012-10-15"),
+(5, "Daisy", "Perro", "Bulldog", "Femenino", 2, "2021-02-01"),
+(6, "Charlie", "Perro", "Golden Retriever", "Masculino", 8, "2015-08-29"),
+(7, "Rosie", "Perro", "Pastor Alemán", "Femenino", 3, "2020-04-07"),
+(8, "Milo", "Gato", "Maine Coon", "Masculino", 12, "2020-05-07"),
+(9, "Ruby", "Perro", "Beagle", "Femenino", 6, "2017-09-10"),
+(10, "Teddy", "Gato", "Bengala", "Masculino", 1, "2012-09-10"),
+(11, "Lucy", "Perro", "Shih Tzu", "Femenino", 5, "2018-02-14"),
+(12, "Duke", "Gato", "Siames", "Masculino", 7, "2016-06-30"),
+(13, "Chloe", "Gato", "Persa", "Femenino", 9, "2014-07-15"),
+(14, "Oliver", "Perro", "Shih Tzu", "Masculino", 10, "2013-01-05"),
+(15, "Zoey", "Perro", "Labrador Retriever", "Femenino", 3, "2020-01-01");
+
+INSERT INTO vacunas (codigo_vacuna, nombre_vacuna)
+VALUES
+(1, "Trivalente Felina"),
+(2, "Leucemia Felina"),
+(3, "Moquillo"),
+(4, "Parvovirosis"),
+(5, "Pentavalente Canino"),
+(6, "Coronavirus Canino"),
+(7, "Rabia"),
+(8, "Tos de las perreras");
+
+INSERT INTO servicios (codigo_servicio, tipo_servicio, duracion_servicio, costo_servicio)
+VALUES
+(1, "Baño Sencillo", "01:00:00", 50000.000),
+(2, "Baño Sencillo con Corte", "01:30:00", 70000.000),
+(3, "Baño Medicado", "01:00:00", 60000),
+(4, "Baño Medicado con Corte", "01:30:00", 80000.000),
+(5, "Spa Sencillo", "01:30:00", 100000.000),
+(6, "Spa y Tratamiento hidratante", "02:00:00", 125000.000);
+
+INSERT INTO productos (codigo_producto, tipo_producto, cantidad_disponible_producto, costo_producto)
+VALUES
+(1, "Collar", 50, 30000.000),
+(2, "Placa", 50, 20000.000),
+(3, "Cama", 20, 80000.000),
+(4, "Saco", 30, 50000.000),
+(5, "Arnes", 50, 50000.000);
+
+INSERT INTO locales (codigo_local, nombre_local, direccion_local)
+VALUES
+(1, "Usaquen", "Carrera 7 No 116 - 10"),
+(2, "Colina", "Carrera 56 # 128 - 50"),
+(3, "Salitre", "Calle 26 # 62 - 07");
+
+INSERT INTO groomers (id_groomer, nombre_groomer, apellido_groomer, documento_groomer, telefono_groomer)
+VALUES
+(1, "Renata", "Hernandez", 19876543, 3028576),
+(2, "Alejandro", "Ramirez", 15678923, 3056928),
+(3, "Victoria", "Gonzalez", 13456789, 3115730),
+(4, "Andres", "Morales", 19876543, 3019082),
+(5, "Ana", "Lopez", 18765432, 3104829),
+(6, "Daniel", "Torres", 10987654, 3057102),
+(7, "Gabriela", "Silva", 19827364, 3116092),
+(8, "Jose", "Martinez", 14567892, 3023750),
+(9, "Lucia", "Vargas", 12345678, 3016542),
+(10, "Carlos", "Castro", 19876543, 3107298);
+
+INSERT INTO administrativos (id_administrativo, nombre_administrativo, apellido_administrativo, documento_administrativo, telefono_administrativo)
+VALUES
+(1, "Sofia", "Garcia", 17654321, 3057489),
+(2, "Mateo", "Ortiz", 13456789, 3026198),
+(3, "Valeria", "Sanchez", 19827365, 3115089);
+
+INSERT INTO RClientesMascotas (id_clientemascota, id_cliente, id_mascota)
+VALUES
+(1,  3, 1),
+(2, 8, 2),
+(3, 2, 3),
+(4, 9, 4),
+(5, 4, 5),
+(6, 3, 6),
+(7, 1, 7),
+(8, 7, 8),
+(9, 10, 9),
+(10, 5, 10),
+(11, 5, 11),
+(12, 7, 12),
+(13, 6, 13),
+(14, 10, 14),
+(15, 1, 15);
+
+INSERT INTO RMascotasVacunas (id_mascotavacuna, id_mascota, codigo_vacuna, fecha_aplicacion_vacuna)
+VALUES
+(1, 1, 3, "2023-01-23"),
+(2, 2, 1, "2022-12-12"),
+(3, 3, 4, "2023-03-01"),
+(4, 4, 2, "2022-10-31"),
+(5, 5, 5, "2023-02-13"),
+(6, 6, 6, "2023-04-09"),
+(7, 7, 7, "2023-05-19"),
+(8, 8, 1, "2023-05-10"),
+(9, 9, 5, "2023-03-09"),
+(10, 10, 2, "2023-02-06"),
+(11, 11, 6, "2023-06-03"),
+(12, 12, 3, "2023-04-27"),
+(13, 13, 7, "2022-11-29"),
+(14, 14, 8, "2022-12-22"),
+(15, 15, 4, "2023-01-10");
+
+INSERT INTO citas (numero_cita, codigo_servicio, id_cliente, id_mascota, id_groomer, fechayhora_cita)
+VALUES
+(1, 2, 3, 1, 1, "2023-08-01 14:00:00"),
+(2, 6, 4, 5, 7, "2023-07-30 10:30:00"),
+(3, 3, 1, 7, 3, "2023-08-05 09:00:00"),
+(4, 2, 5, 11, 10, "2023-08-08 12:30:00"),
+(5, 5, 1, 15, 8, "2023-08-10 11:00:00");
+
+INSERT INTO Proveedores(id_proveedor, nombre_proveedor, ruc_proveedor, codigo_producto)
+VALUES
+(1, "Pet Supplies", 12345678901, 1),
+(2, "Mascotas Felices", 19876543210, 3),
+(3, "Wauw Friends", 17654321098, 4);
+
+INSERT INTO RGroomersLocales(id_groomerlocal, id_groomer, codigo_local)
+VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 2),
+(5, 5, 2),
+(6, 6, 2),
+(7, 7, 2), 
+(8, 8, 3),
+(9, 9, 3),
+(10, 10, 3);
+
+INSERT INTO RAdministrativosLocales(id_administrativolocal, id_administrativo, codigo_local)
+VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
